@@ -15,16 +15,6 @@ namespace Gerenciamento_de_Produtos
 
         }
 
-        static void Clear()
-        {
-            Console.Clear();
-        }
-
-        static void ReadLine()
-        {
-            Console.ReadLine();
-        }
-
         static void ProgramMenu()
         {
             Clear();
@@ -61,6 +51,21 @@ namespace Gerenciamento_de_Produtos
                     ProgramMenu();
                     break;
             }
+        }
+
+        static void Adicionar()
+        {
+
+        }
+
+        static void Clear()
+        {
+            Console.Clear();
+        }
+
+        static void ReadLine()
+        {
+            Console.ReadLine();
         }
 
     }
