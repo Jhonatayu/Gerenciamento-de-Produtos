@@ -13,11 +13,15 @@ namespace Gerenciamento_de_Produtos
     internal class Program
     {
         static List<IEstoque> produtos = new List<IEstoque>();
+
+        
+
         enum Menu {Sair, Listar, Adicionar, Editar, Remover, Entrada, Saida }
         enum MenuCadastro {Sair, ProdutoFisico, Ebook, Curso}
 
         static void Main(string[] args)
         {
+            CarregarProdutos();
             ProgramMenu();
         }
 
@@ -110,9 +114,24 @@ namespace Gerenciamento_de_Produtos
             Console.Write("\nDigite a quantidade inicial do produto em estoque: ");
             int qtd = int.Parse(Console.ReadLine());
 
+            Console.Write("\nDeseja alterar os dados? (sim/não) ");
+            string alterar = Console.ReadLine().ToUpper();
 
-            ProdutoFisico pf = new ProdutoFisico(Id, nome, preco, qtd);
-            produtos.Add(pf);
+            if (alterar == "SIM")
+            {
+                CadastrarProdutoFisico();
+
+            }
+            else if (alterar == "NÃO" || alterar == "NAO")
+            {
+                ProdutoFisico pf = new ProdutoFisico(Id, nome, preco, qtd);
+                produtos.Add(pf);
+                SalvarProduto();
+                Clear();
+                Console.WriteLine("Produto Físico adicionado com sucesso! ");
+                Console.Write("\nPressione ENTER para retornar ao menu.");
+                ReadLine();
+            }
 
             Cadastro();
         }
@@ -134,8 +153,24 @@ namespace Gerenciamento_de_Produtos
             Console.Write("Digite o PREÇO do produto: ");
             float preco = float.Parse(Console.ReadLine());
 
-            Ebook ebook = new Ebook(Id, nome, autor, preco);
-            produtos.Add(ebook);
+            Console.Write("\nDeseja alterar os dados? (sim/não) ");
+            string alterar = Console.ReadLine().ToUpper();
+
+            if (alterar == "SIM")
+            {
+                CadastrarEbook();
+
+            }
+            else if (alterar == "NÃO" || alterar == "NAO")
+            {
+                Ebook ebook = new Ebook(Id, nome, autor, preco);
+                produtos.Add(ebook);
+                SalvarProduto();
+                Clear();
+                Console.WriteLine("Ebook adicionado com sucesso! ");
+                Console.Write("\nPressione ENTER para retornar ao menu.");
+                ReadLine();
+            }
 
             Cadastro();
         }
@@ -157,10 +192,48 @@ namespace Gerenciamento_de_Produtos
             Console.Write("Digite o PREÇO do produto: ");
             float preco = float.Parse(Console.ReadLine());
 
-            Curso curso = new Curso(Id, nome, autor, preco);
-            produtos.Add(curso);
+            Console.Write("\nDeseja alterar os dados? (sim/não) ");
+            string alterar = Console.ReadLine().ToUpper();
+
+            if (alterar == "SIM")
+            {
+                CadastrarCurso();
+
+            }
+            else if (alterar == "NÃO" || alterar == "NAO")
+            {
+                Curso curso = new Curso(Id, nome, autor, preco);
+                produtos.Add(curso);
+                SalvarProduto();
+                Clear();
+                Console.WriteLine("Curso adicionado com sucesso! ");
+                Console.Write("\nPressione ENTER para retornar ao menu.");
+                ReadLine();
+            }
 
             Cadastro();
+        }
+
+        static void SalvarProduto()
+        {
+            string json = JsonSerializer.Serialize(produtos, new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
+
+            File.WriteAllText("produtos.json", json);
+        }
+
+        static void CarregarProdutos()
+        {
+            if (File.Exists("produtos.json"))
+            {
+                var json = File.ReadAllText("produtos.json");
+                if (!string.IsNullOrWhiteSpace(json))
+                {
+                    produtos = JsonSerializer.Deserialize<List<IEstoque>>(json);
+                }
+            }
         }
 
         static void Clear()
