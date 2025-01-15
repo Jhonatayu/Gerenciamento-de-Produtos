@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Gerenciamento_de_Produtos
 {
-    internal interface IEstoque
+    interface IEstoque
     {
+        void Exibir();
+        void AdicionarEntrada();
+        void AdicionarSaida();
     }
 }

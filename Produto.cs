@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gerenciamento_de_Produtos
 {
-    class Produto : IEstoque
+    abstract class Produto
     {
         public string Id { get; set; }
         public string Nome { get; set; }

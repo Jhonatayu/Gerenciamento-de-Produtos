@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gerenciamento_de_Produtos
 {
-    internal class Ebook : Produto, IEstoque
+    class Ebook : Produto, IEstoque
     {
         public string Autor { get; set; }
         public int Vendas { get; set; }
@@ -18,5 +18,18 @@ namespace Gerenciamento_de_Produtos
             this.Preco = Preco;
             this.Autor = Autor;
             this.Vendas = Vendas;
+        }
+
+        public void Exibir()
+        {
+        }
+
+        public void AdicionarEntrada()
+        {
+        }
+
+        public void AdicionarSaida()
+        {
+        }
     }
 }

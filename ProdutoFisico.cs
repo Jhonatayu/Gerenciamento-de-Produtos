@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gerenciamento_de_Produtos
 {
-    internal class ProdutoFisico : Produto, IEstoque
+    class ProdutoFisico : Produto, IEstoque
     {
         public int Quantidade { get; set; }
 
@@ -16,6 +16,18 @@ namespace Gerenciamento_de_Produtos
             this.Nome = Nome;
             this.Preco = Preco;
             this.Quantidade = Quantidade;
+        }
+
+        public void Exibir()
+        {
+        }
+
+        public void AdicionarEntrada()
+        {
+        }
+
+        public void AdicionarSaida()
+        {
         }
     }
 }

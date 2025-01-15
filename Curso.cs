@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gerenciamento_de_Produtos
 {
-    internal class Curso : Produto, IEstoque
+    class Curso : Produto, IEstoque
     {
         public string Autor { get; set; }
         public int Vendas { get; set; }
