@@ -9,15 +9,15 @@ namespace Gerenciamento_de_Produtos
     class Ebook : Produto, IEstoque
     {
         public string Autor { get; set; }
-        public int Vendas { get; set; }
+        private int Vendas { get; set; }
 
-        public Ebook(string Id, string Nome, float Preco, string Autor, int Vendas)
+        public Ebook(string Id, string Nome, string Autor, float Preco)
         {
             this.Id = Id;
             this.Nome = Nome;
-            this.Preco = Preco;
             this.Autor = Autor;
-            this.Vendas = Vendas;
+            this.Preco = Preco;
+            this.Vendas = 0;
         }
 
         public void Exibir()

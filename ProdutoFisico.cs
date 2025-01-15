@@ -8,7 +8,7 @@ namespace Gerenciamento_de_Produtos
 {
     class ProdutoFisico : Produto, IEstoque
     {
-        public int Quantidade { get; set; }
+        private int Quantidade { get; set; }
 
         public ProdutoFisico(string Id, string Nome, float Preco, int Quantidade)
         {
