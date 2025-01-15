@@ -22,6 +22,12 @@ namespace Gerenciamento_de_Produtos
 
         public void Exibir()
         {
+            Console.WriteLine($"Id: {Id}");
+            Console.WriteLine($"Nome: {Nome}");
+            Console.WriteLine($"Autor: {Autor}");
+            Console.WriteLine($"Preço: {Preco}");
+            Console.WriteLine($"Vendas: {Vendas}");
+            Console.WriteLine($"\n- - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
         }
 
         public void AdicionarEntrada()

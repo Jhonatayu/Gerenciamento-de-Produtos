@@ -20,4 +20,22 @@ namespace Gerenciamento_de_Produtos
             this.Vendas = Vendas;
             this.Vagas = Vagas;
         }
+
+        public void Exibir()
+        {
+            Console.WriteLine($"Nome: {Nome}");
+            Console.WriteLine($"Autor: {Autor}");
+            Console.WriteLine($"Preço: {Preco}");
+            Console.WriteLine($"Vagas Restantes: {Vagas}");
+            Console.WriteLine($"\n- - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
+        }
+
+        public void AdicionarEntrada()
+        {
+        }
+
+        public void AdicionarSaida()
+        {
+        }
+    }
 }
