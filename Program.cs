@@ -21,7 +21,7 @@ namespace Gerenciamento_de_Produtos
             Console.WriteLine("\t\tGerenciamento de Estoque");
             Console.WriteLine("\n1- Listar Produtos\n2- Adicionar Produto\n3- Editar Produto\n4- Remover Produto\n5- Entrada de Estoque\n6- Saída de Estoque\n0- Sair");
             Console.Write("\nSelecione uma opção: ");
-            Menu opcao = (Menu)int.Parse(Console.ReadLine());
+            Menu opcao = (Menu)int.Parse(Console.ReadLine()); 
 
             switch (opcao)
             {
