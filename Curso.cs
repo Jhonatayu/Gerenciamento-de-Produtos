@@ -15,23 +15,14 @@ namespace Gerenciamento_de_Produtos
         public string Autor { get; set; }
         private int Vendas { get; set; }
         private int Vagas { get; set; }
-        public Curso(string Id, string Nome, string Autor, float preco)
+        public string Tipo => "Curso";
+        public Curso(string Id, string Nome, string Autor, float Preco)
         {
             this.Id = Id;
             this.Nome = Nome;
             this.Preco = Preco;
             this.Autor = Autor;
-            this.Vendas = 0;
-        }
-
-        public void Exibir()
-        {
-            Console.WriteLine($"Id: {Id}");
-            Console.WriteLine($"Nome: {Nome}");
-            Console.WriteLine($"Autor: {Autor}");
-            Console.WriteLine($"Preço: {Preco}");
-            Console.WriteLine($"Vagas Restantes: {Vagas}");
-            Console.WriteLine($"\n- - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
+            this.Vagas = Vagas;
         }
 
         public void AdicionarEntrada()

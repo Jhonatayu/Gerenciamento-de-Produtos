@@ -13,6 +13,7 @@ namespace Gerenciamento_de_Produtos
     class ProdutoFisico : Produto, IEstoque
     {
         private int Quantidade { get; set; }
+        public string Tipo => "Produto Físico";
 
         public ProdutoFisico(string Id, string Nome, float Preco, int Quantidade)
         {
@@ -20,15 +21,6 @@ namespace Gerenciamento_de_Produtos
             this.Nome = Nome;
             this.Preco = Preco;
             this.Quantidade = Quantidade;
-        }
-
-        public void Exibir()
-        {
-            Console.WriteLine($"Id: {Id}");
-            Console.WriteLine($"Nome: {Nome}");
-            Console.WriteLine($"Preço: {Preco}");
-            Console.WriteLine($"Quantidade em Estoque: {Quantidade}");
-            Console.WriteLine($"\n- - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
         }
 
         public void AdicionarEntrada()
