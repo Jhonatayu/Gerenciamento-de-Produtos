@@ -15,9 +15,8 @@ namespace Gerenciamento_de_Produtos
         private int Quantidade { get; set; }
         public string Tipo => "Produto Físico";
 
-        public ProdutoFisico(string Id, string Nome, float Preco, int Quantidade)
+        public ProdutoFisico(string Nome, float Preco, int Quantidade)
         {
-            this.Id = Id;
             this.Nome = Nome;
             this.Preco = Preco;
             this.Quantidade = Quantidade;

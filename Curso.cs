@@ -16,9 +16,8 @@ namespace Gerenciamento_de_Produtos
         private int Vendas { get; set; }
         private int Vagas { get; set; }
         public string Tipo => "Curso";
-        public Curso(string Id, string Nome, string Autor, float Preco)
+        public Curso(string Nome, string Autor, float Preco)
         {
-            this.Id = Id;
             this.Nome = Nome;
             this.Preco = Preco;
             this.Autor = Autor;
