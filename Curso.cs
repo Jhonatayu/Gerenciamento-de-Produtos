@@ -10,7 +10,7 @@ using System.Text.Json;
 
 namespace Gerenciamento_de_Produtos
 {
-    class Curso : Produto, IEstoque
+    class Curso : Produto
     {
         public string Autor { get; set; }
         private int Vendas { get; set; }

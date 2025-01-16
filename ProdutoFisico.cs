@@ -10,7 +10,7 @@ using System.Text.Json;
 
 namespace Gerenciamento_de_Produtos
 {
-    class ProdutoFisico : Produto, IEstoque
+    class ProdutoFisico : Produto
     {
         private int Quantidade { get; set; }
         public string Tipo => "Produto Físico";
@@ -20,14 +20,6 @@ namespace Gerenciamento_de_Produtos
             this.Nome = Nome;
             this.Preco = Preco;
             this.Quantidade = Quantidade;
-        }
-
-        public void AdicionarEntrada()
-        {
-        }
-
-        public void AdicionarSaida()
-        {
         }
     }
 }

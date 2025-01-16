@@ -10,7 +10,7 @@ using System.Text.Json;
 
 namespace Gerenciamento_de_Produtos
 {
-    class Ebook : Produto, IEstoque
+    class Ebook : Produto
     {
         public string Autor { get; set; }
         private int Vendas { get; set; }
@@ -24,12 +24,6 @@ namespace Gerenciamento_de_Produtos
             this.Vendas = 0;
         }
 
-        public void AdicionarEntrada()
-        {
-        }
 
-        public void AdicionarSaida()
-        {
-        }
     }
 }

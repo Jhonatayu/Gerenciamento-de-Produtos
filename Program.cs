@@ -8,6 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 using Newtonsoft.Json;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Gerenciamento_de_Produtos
 {
@@ -41,8 +42,10 @@ namespace Gerenciamento_de_Produtos
                     Cadastro();
                     break;
                 case Menu.Editar:
+                    Editar();
                     break;
                 case Menu.Remover:
+                    RemoverProduto();
                     break;
                 case Menu.Entrada:
                     break;
@@ -102,7 +105,7 @@ namespace Gerenciamento_de_Produtos
             Clear();
             Console.WriteLine("\t\tCadastro de Produto Físico");
 
-            Console.Write("Digite o NOME do produto: ");
+            Console.Write("\nDigite o NOME do produto: ");
             string nome = Console.ReadLine();
 
             Console.Write("Digite o PREÇO do produto: ");
@@ -138,7 +141,7 @@ namespace Gerenciamento_de_Produtos
             Clear();
             Console.WriteLine("\t\tCadastro de Ebook");
 
-            Console.Write("Digite o NOME do produto: ");
+            Console.Write("\nDigite o NOME do produto: ");
             string nome = Console.ReadLine();
 
             Console.Write("Digite o nome do AUTOR: ");
@@ -174,7 +177,7 @@ namespace Gerenciamento_de_Produtos
             Clear();
             Console.WriteLine("\t\tCadastro de Curso");
 
-            Console.Write("Digite o NOME do produto: ");
+            Console.Write("\nDigite o NOME do produto: ");
             string nome = Console.ReadLine();
 
             Console.Write("Digite o nome do AUTOR: ");
@@ -219,17 +222,18 @@ namespace Gerenciamento_de_Produtos
                 if (!string.IsNullOrWhiteSpace(json))
                 {
                     produtos = JsonConvert.DeserializeObject<List<Produto>>(json);
+
                 }
             }
         }
 
         static void RemoverProduto()
         {
-            ListarProdutos();
+            Exibir();
             Console.Write("Selecione o ID do Produto que deseja remover: ");
             int id = int.Parse(Console.ReadLine());
 
-            if (id <= 0 || id > produtos.Count) 
+            if (id < 0 || id > produtos.Count) 
             {
                 Console.WriteLine("Por favor digite um ID válido. ");
                 Console.Write("\nPressione ENTER para continuar. ");
@@ -239,14 +243,28 @@ namespace Gerenciamento_de_Produtos
             }else
             {
                 produtos.RemoveAt(id);
+                SalvarProduto();
             }
 
             Clear();
             Console.Write("Produto removido com sucesso! Deseja remover outro produto? (sim/não): ");
+            string remover = Console.ReadLine().ToUpper();
+
+            if (remover == "SIM") 
+            {
+                CarregarProdutos();
+                RemoverProduto();
+
+            }else if (remover == "NÃO" || remover == "NAO")
+            {
+                Console.Write("\nPressione ENTER para retornar ao menu. ");
+                ReadLine();
+                ProgramMenu();
+            }
 
         }
 
-        static void ListarProdutos()
+        static void Exibir()
         {
             Clear();
             int i = 0;
@@ -281,13 +299,94 @@ namespace Gerenciamento_de_Produtos
                 }
                 i++;
             }
+        }
 
+        static void Editar()
+        {
+            Clear();
+            Alterar();
+            SalvarProduto();
+            CarregarProdutos();
+            ProgramMenu();
+        }
+
+        static void Alterar()
+        {
+            Exibir();
+            Console.Write("Selecione o ID do produto que deseja alterar. ");
+            int id = int.Parse(Console.ReadLine());
+
+            Clear();
+
+            if (id >= 0 && id < produtos.Count)
+            {
+                switch (produtos[id].Tipo)
+                {
+                    case "Produto Físico":
+                        Console.WriteLine($"\nNOME do Produto: {produtos[id].Nome}");
+                        Console.WriteLine($"PREÇO do Produto: {produtos[id].Preco}");
+
+                        Console.Write("\nDigite o NOME que irá substituir: ");
+                        produtos[id].Nome = Console.ReadLine();
+
+                        Console.Write("Digite o PREÇO que irá substituir: ");
+                        produtos[id].Preco = float.Parse(Console.ReadLine());
+
+                        break;
+                    case "Ebook":
+                        Console.WriteLine($"\nNOME do Ebook: {produtos[id].Nome}");
+                        Console.WriteLine($"AUTOR do Ebook: {produtos[id].Autor}");
+                        Console.WriteLine($"PREÇO do Ebook: {produtos[id].Preco}");
+
+                        Console.Write("\nDigite o NOME que irá substituir: ");
+                        produtos[id].Nome = Console.ReadLine();
+
+                        Console.Write("Digite o AUTOR que irá substituir: ");
+                        produtos[id].Autor = Console.ReadLine();
+
+                        Console.Write("Digite o PREÇO que irá substituir: ");
+                        produtos[id].Preco = float.Parse(Console.ReadLine());
+
+                        break;
+                    case "Curso":
+                        Console.WriteLine($"\nNOME do Curso: {produtos[id].Nome}");
+                        Console.WriteLine($"AUTOR do Curso: {produtos[id].Autor}");
+                        Console.WriteLine($"PREÇO do Curso: {produtos[id].Preco}");
+
+                        Console.Write("\nDigite o NOME que irá substituir: ");
+                        produtos[id].Nome = Console.ReadLine();
+
+                        Console.Write("Digite o AUTOR que irá substituir: ");
+                        produtos[id].Autor = Console.ReadLine();
+
+                        Console.Write("Digite o PREÇO que irá substituir: ");
+                        produtos[id].Preco = float.Parse(Console.ReadLine());
+
+                        break;
+                }   
+            }
+            else
+            {
+                Clear();
+                Console.Write("ID inválido! Pressione ENTER para retornar. ");
+                Alterar();
+            }
+
+            Console.WriteLine("\nProduto alterado com sucesso! ");
             Console.Write("\nPressione ENTER para retornar ao menu.");
+            ReadLine();
+
+        }
+
+        static void ListarProdutos()
+        {
+            Exibir();
+            Console.Write("Pressione ENTER para retornar ao menu. ");
             ReadLine();
             ProgramMenu();
         }
 
-        static void Clear()
+        private static void Clear()
         {
             Console.Clear();
         }

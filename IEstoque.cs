@@ -12,7 +12,6 @@ namespace Gerenciamento_de_Produtos
 {
     interface IEstoque
     {
-        void AdicionarEntrada();
-        void AdicionarSaida();
+        public void Alterar();
     }
 }
